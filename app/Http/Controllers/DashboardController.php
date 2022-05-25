@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PagesController extends Controller
+class DashboardController extends Controller
 {
     public function Index(){
-        return view('index');
+        return view('pages/mainPage');
     }
-
 }

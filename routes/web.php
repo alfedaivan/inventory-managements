@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'App\Http\Controllers\PagesController@Index');
+Route::get('/', 'App\Http\Controllers\LoginController@Index');
+Route::get('/dashboard', 'App\Http\Controllers\DashboardController@Index');
