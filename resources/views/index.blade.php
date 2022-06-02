@@ -24,7 +24,15 @@
             <img src="{{url('/assets/template/img/stisla-fill.svg')}}" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
             <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Stisla</span></h4>
             <p class="text-muted">Before you get started, you must login or register if you don't already have an account.</p>
-            <form method="POST" action="#" class="needs-validation" novalidate="">
+
+            @if(session('error'))
+            <div class="alert alert-danger">
+                <b>Opps!</b> {{session('error')}}
+            </div>
+            @endif
+
+            <form action="{{ route('actionLogin') }}" method="post" class="needs-validation" novalidate="">
+            @csrf
               <div class="form-group">
                 <label for="email">Email</label>
                 <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
@@ -43,25 +51,25 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
                   <label class="custom-control-label" for="remember-me">Remember Me</label>
                 </div>
-              </div>
+              </div> -->
 
               <div class="form-group text-right">
-                <a href="auth-forgot-password.html" class="float-left mt-3">
+                <!-- <a href="auth-forgot-password.html" class="float-left mt-3">
                   Forgot Password?
-                </a>
+                </a> -->
                 <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
                   Login
                 </button>
               </div>
 
-              <div class="mt-5 text-center">
+              <!-- <div class="mt-5 text-center">
                 Don't have an account? <a href="auth-register.html">Create new one</a>
-              </div>
+              </div> -->
             </form>
 
             <div class="text-center mt-5 text-small">

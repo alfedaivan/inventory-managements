@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +19,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'App\Http\Controllers\LoginController@Index');
-Route::get('/dashboard', 'App\Http\Controllers\DashboardController@Index');
+
+// login
+Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::post('actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('actionLogout', [LoginController::class, 'actionLogout'])->name('actionlogout')->middleware('auth');
+
+
