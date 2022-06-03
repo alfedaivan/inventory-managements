@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\LoginController@Index');
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@Index');
+
+Route::get('/supplier', [SupplierController::class, 'index']);
