@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 Route::get('actionLogout', [LoginController::class, 'actionLogout'])->name('actionlogout')->middleware('auth');
 
 
+Route::resource('supplier', SupplierController::class);
