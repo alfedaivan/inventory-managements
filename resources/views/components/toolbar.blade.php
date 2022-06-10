@@ -11,7 +11,7 @@
             <img alt="image" src="{{url('/assets/template/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Ivan</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="{{url('/actionLogout')}}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>

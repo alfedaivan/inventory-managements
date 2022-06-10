@@ -12,6 +12,8 @@ use App\Http\Controllers\DashboardController;
 
 class LoginController extends Controller
 {
+
+
     public function login(){
         if(Auth::check()){
             return redirect('dashboard');
@@ -21,18 +23,23 @@ class LoginController extends Controller
     }
 
     public function actionLogin(Request $request){
-        $data = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
 
-        if(Auth::Attempt($data)){
-            return redirect('/dashboard');
+        Auth::attempt($request->only('email', 'password'));
+
+        if(Auth::check()){
+            $request->session()->put('name', Auth::user()->name);
+            $request->session()->put('email', Auth::user()->email);
+
+            return redirect()->route('dashboard');
+        }else{
+            return redirect()
+            ->back()
+            ->withErrors("Email Atau Password salah!");
         }
-        else{
-            Session::flash('error', 'Email atau Password Salah');
-            return redirect('/');
-        }
+
+        var_dump(Auth::check());
+            // Return command;
+
     }
 
     public function actionLogout(){
