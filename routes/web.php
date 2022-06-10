@@ -21,4 +21,4 @@ use App\Http\Controllers\SupplierController;
 Route::get('/', 'App\Http\Controllers\LoginController@Index');
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@Index');
 
-Route::get('/supplier', [SupplierController::class, 'index']);
+Route::resource('supplier', SupplierController::class);

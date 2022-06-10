@@ -11,7 +11,7 @@
                 <a href="{{url('/dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard </span></a>
             </li>
             <li class="nav-item active"><!-- "{{request()->is('supplier') ? 'nav-item active' : 'nav-item'}}" -->
-                <a href="{{url('/supplier')}}" class="nav-link"><i class="fas fa-fire"></i><span>Supplier </span></a>
+                <a href="{{url('/supplier')}}" class="nav-link"><i class="fas fa-truck"></i><span>Supplier </span></a>
             </li>
         </ul>
     </aside>
