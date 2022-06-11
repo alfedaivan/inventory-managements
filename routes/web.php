@@ -23,10 +23,6 @@ use App\Http\Controllers\UserController;
 // });
 
 
-<<<<<<< HEAD
-Route::resource('kategori', KategoriController::class);
-Route::resource('supplier', SupplierController::class);
-=======
 // login
 Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
@@ -34,9 +30,11 @@ Route::post('actionLogin', [LoginController::class, 'actionLogin'])->name('actio
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::get('actionLogout', [LoginController::class, 'actionLogout'])->name('actionlogout')->middleware('auth');
 
+// kategori
+Route::resource('kategori', KategoriController::class);
+
 // supplier
 Route::resource('supplier', SupplierController::class);
 
 // user
 Route::resource('user', UserController::class);
->>>>>>> 09d12f9fedaa8e954d5bce55a79811e2918ad6db
