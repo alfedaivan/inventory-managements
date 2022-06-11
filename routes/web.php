@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupplierController;
 
@@ -21,4 +22,5 @@ use App\Http\Controllers\SupplierController;
 Route::get('/', 'App\Http\Controllers\LoginController@Index');
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@Index');
 
+Route::resource('kategori', KategoriController::class);
 Route::resource('supplier', SupplierController::class);
