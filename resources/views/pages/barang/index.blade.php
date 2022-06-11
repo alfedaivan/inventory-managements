@@ -16,9 +16,9 @@
         @endif
 
         <div class="card">
-            <!-- <div class="card-header">
-                <a href="{{ route('barang.create') }}" class="btn btn-primary">Tambah Kategori</a>
-            </div> -->
+            <div class="card-header">
+                <a href="{{ route('barang.create') }}" class="btn btn-primary">Tambah Barang</a>
+            </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-striped table-md">
@@ -29,8 +29,7 @@
                             <th>Harga</th>
                             <th>Stok</th>
                             <th>Supplier</th>
-                            <th>Tanggal Update</th>
-                            <!-- <th>Created At</th> -->
+                            <th>Tanggal Masuk</th>
                             <th>Tanggal Update</th>
                             <th>Action</th>
                         </tr>
@@ -38,11 +37,13 @@
                         @foreach ($barang as $key => $barangindex)
                         <tr>
                             <td>{{ $barang->firstItem() + $key }}</td>
+                            <td><img src="{{ url('/images/'.$barangindex->foto) }}" height="75" width="75" alt="" /></td>
                             <td>{{ $barangindex->namaBarang }}</td>
-                            <td>{{ $barangindex->kategori_id }}</td>
+                            <td>{{ $barangindex->kategori }}</td>
                             <td>{{ $barangindex->harga }}</td>
                             <td>{{ $barangindex->stok }}</td>
-                            <td>{{ $barangindex->supplier_id }}</td>
+                            <td>{{ $barangindex->supplier }}</td>
+                            <td>{{ $barangindex->created_at }}</td>
                             <td>{{ $barangindex->updated_at }}</td>
                             <td class="d-flex">
                                 <a href="{{ route('barang.edit', $barangindex->id) }}" class="btn btn-primary mr-1">Edit</a>

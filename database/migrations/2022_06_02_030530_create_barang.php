@@ -21,6 +21,7 @@ class CreateBarang extends Migration
             $table->date('tglUpdate');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->bigInteger('kategori_id')->unsigned()->nullable();
+            $table->string('foto');
             $table->timestamps();
 
             $table->foreign('supplier_id')->references('id')->on('supplier')->onDelete('cascade');

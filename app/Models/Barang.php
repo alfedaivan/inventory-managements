@@ -18,6 +18,7 @@ class Barang extends Model
         'supplier_id',
         'kategori_id',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'foto'
     ];
 }
