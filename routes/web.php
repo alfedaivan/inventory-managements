@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,6 @@ Route::resource('supplier', SupplierController::class);
 
 // user
 Route::resource('user', UserController::class);
+
+// barang
+Route::resource('barang', BarangController::class);
