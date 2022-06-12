@@ -16,8 +16,18 @@
         @endif
 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header justify-content-between">
                 <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah User</a>
+                <div class="card-header-form">
+                    <form method="GET">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request()->get('search') }}" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-primary rounded-left-0" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -25,9 +35,9 @@
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
+                            <th>Email</th>
                             <th>No Telepon</th>
                             <th>Alamat</th>
-                            <th>Email</th>
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th>Action</th>

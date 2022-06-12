@@ -19,11 +19,11 @@
             <div class="card-header justify-content-between">
                 <a href="{{ route('barang.create') }}" class="btn btn-primary">Tambah Barang</a>
                 <div class="card-header-form">
-                    <form>
+                    <form method="GET">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <input type="text" name="search" class="form-control" placeholder="Search" value="{{ request()->get('search') }}" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary rounded-left-0" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary rounded-left-0" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </form>
@@ -50,10 +50,22 @@
                             <td>{{ $barang->firstItem() + $key }}</td>
                             <td><img src="{{ url('/images/'.$barangindex->foto) }}" height="75" width="75" alt="" /></td>
                             <td>{{ $barangindex->namaBarang }}</td>
-                            <td>{{ $barangindex->kategori }}</td>
+                            <td>
+                                @foreach($kategori as $k)
+                                @if($barangindex->kategori_id == $k->id)
+                                {{ $k->kategori }}
+                                @endif
+                                @endforeach
+                            </td>
                             <td>{{ $barangindex->harga }}</td>
                             <td>{{ $barangindex->stok }}</td>
-                            <td>{{ $barangindex->supplier }}</td>
+                            <td>
+                                @foreach($supplier as $s)
+                                @if($barangindex->supplier_id == $s->id)
+                                {{ $s->nama }}
+                                @endif
+                                @endforeach
+                            </td>
                             <td>{{ $barangindex->created_at }}</td>
                             <td>{{ $barangindex->updated_at }}</td>
                             <td class="d-flex">
