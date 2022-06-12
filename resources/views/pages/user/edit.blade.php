@@ -6,25 +6,31 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Tambah Supplier</h1>
+            <h1>Edit User</h1>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('supplier.store') }}" method="post">
+                        <form action="{{ route('user.update', $user->id) }}" method="post">
                             @csrf
+                            @method('PUT')
+
                             <div class="form-group mb-2">
                                 <label>Nama</label>
-                                <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" required>
+                                <input type="text" name="nama" class="form-control" value="{{ old('nama', $user->nama) }}" required>
                             </div>
                             <div class="form-group mb-2">
                                 <label>Nomor Telepon</label>
-                                <input type="number" name="noTelepon" class="form-control" value="{{ old('noTelepon') }}" required>
+                                <input type="number" name="noTelepon" class="form-control" value="{{ old('noTelepon', $user->noTelepon) }}" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>Alamat</label>
+                                <textarea name="alamat" class="form-control summernote-simple">{{ old('alamat', $user->alamat) }}</textarea>
                             </div>
                             <div class="form-group mb-4">
-                                <label>Alamat</label>
-                                <textarea name="alamat" class="form-control">{{ old('alamat') }}</textarea>
+                                <label>Email</label>
+                                <input type="text" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
                             </div>
                             <div class="form-group d-flex justify-conternt-between">
                                 <button type="submit" class="btn btn-primary mr-1">Submit</button>
@@ -35,7 +41,6 @@
                 </div>
             </div>
         </div>
-
 
     </section>
 </div>

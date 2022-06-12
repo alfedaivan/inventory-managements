@@ -24,9 +24,10 @@ class SupplierController extends Controller
         return view('pages.supplier.edit', $data);
     }
 
+    //
     public function store(Request $request)
     {
-        $data = 
+        $data =
         [
             'nama' => $request->nama,
             'noTelepon' => $request->noTelepon,
@@ -38,11 +39,12 @@ class SupplierController extends Controller
         return redirect()->route('supplier.index')->with('berhasil', 'Data Supplier Baru Berhasil Ditambahkan!');
     }
 
+    // update
     public function update(Request $request, $id)
     {
         $supplier = Supplier::findOrFail($id);
 
-        $data = 
+        $data =
         [
             'nama' => $request->nama,
             'noTelepon' => $request->noTelepon,
@@ -54,6 +56,7 @@ class SupplierController extends Controller
         return redirect()->route('supplier.index')->with('berhasil', 'Data Supplier Berhasil Diubah!');
     }
 
+    // delete
     public function destroy($id)
     {
         $supplier = Supplier::find($id);
