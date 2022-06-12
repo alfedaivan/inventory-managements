@@ -16,16 +16,18 @@
         @endif
 
         <div class="card">
-            <form method="GET" class="form-inline">
-                <div class="form-group">
-                    <input type="text" name="search" class="form-control" title="Cari berdasarkan nama ruangan / nama barang" placeholder="Search" value="{{ request()->get('search') }}">
+            <div class="card-header justify-content-between">
+                <a href="{{ route('barangmasuk.create') }}" class="btn btn-primary">Tambah Barang</a>
+                <div class="card-header-form">
+                    <form method="GET" class="form-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="{{ request()->get('search') }}" placeholder="Search" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary rounded-left-0" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </form>
-            <div class="card-header">
-                <a href="{{ route('barangmasuk.create') }}" class="btn btn-primary">Tambah Barang Masuk</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
