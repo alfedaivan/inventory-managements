@@ -13,18 +13,19 @@ class BarangKeluarController extends Controller
     {
         $users = Users::all();
         $barang = Barang::all();
-        $barangkeluar = Barangkeluar::when($request->search, function ($query) use ($request) {
-            $query->join('users', 'barangKeluar.user_id', '=', 'users.id')
-                ->join('barang', 'barangKeluar.barang_id', '=', 'barang.id')
+        $barang_keluar = Barangkeluar::when($request->search, function ($query) use ($request) {
+            $query->join('users', 'barang_keluar.user_id', '=', 'users.id')
+                ->join('barang', 'barang_keluar.barang_id', '=', 'barang.id')
                 ->where('barang.namaBarang', 'LIKE', '%' . $request->search . '%')
+                ->orwhere('barang_keluar.tglKeluar', 'LIKE', '%' . $request->search . '%')
                 ->select(
-                    'barangKeluar.*',
+                    'barang_keluar.*',
                     'users.nama AS users_nama',
                     'barang.namaBarang AS barang_namaBarang'
                 );
         })->simplePaginate(5);
 
-        return view('pages.barangkeluar.index', compact('users', 'barang', 'barangkeluar'));
+        return view('pages.barangkeluar.index', compact('users', 'barang', 'barang_keluar'));
     }
 
     public function create()

@@ -21,14 +21,16 @@
         <div class="card">
             <div class="card-header justify-content-between">
                 <a href="{{ route('barangkeluar.create') }}" class="btn btn-primary">Tambah Barang Keluar</a>
-                <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-primary" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
+                <div class="card-header-form">
+                    <form method="GET" class="form-inline">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" value="{{ request()->get('search') }}" placeholder="Search" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-primary rounded-left-0" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -41,9 +43,9 @@
                             <th>Nama User</th>
                         </tr>
 
-                        @foreach ($barangkeluar as $key => $brgKeluarindex)
+                        @foreach ($barang_keluar as $key => $brgKeluarindex)
                         <tr>
-                            <td>{{ $barangkeluar->firstItem() + $key }}</td>
+                            <td>{{ $barang_keluar->firstItem() + $key }}</td>
                             <td>
                                 @foreach($barang as $brg)
                                 @if($brgKeluarindex->barang_id == $brg->id)
@@ -67,7 +69,7 @@
             </div>
         </div>
 
-        {{ $barangkeluar->links() }}
+        {{ $barang_keluar->links() }}
     </section>
 </div>
 @endsection()
