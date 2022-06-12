@@ -13,20 +13,19 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('barang.update', $barang->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('barang.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
                             <div class="form-group mb-2">
                                 <label>Nama</label>
-                                <input type="text" name="namaBarang" class="form-control" value="{{ old('namaBarang', $barang->namaBarang) }}" required>
+                                <input type="text" name="namaBarang" class="form-control" required>
                             </div>
                             <div class="form-group mb-2">
                                 <label>Harga</label>
-                                <input type="number" name="harga" class="form-control" value="{{ old('harga', $barang->harga) }}" required>
+                                <input type="number" name="harga" class="form-control" required>
                             </div>
                             <div class="form-group mb-2">
                                 <label>Stok</label>
-                                <input type="number" name="stok" class="form-control" value="{{ old('stok', $barang->stok) }}" required>
+                                <input type="number" name="stok" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Kategori</label>
@@ -46,8 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Foto</label>
-                                <input name="foto" type="file" class="form-control" value="{{ url('/images'.$barang->foto) }}" data-default-file="{{ url('/images'.$barang->foto) }}">
-                                <input name="hidden_image" type="hidden" class="form-control" value="{{$barang->foto}}">
+                                <input name="foto" type="file" class="form-control" required="">
                             </div>
                             <div class="form-group d-flex justify-conternt-between">
                                 <button type="submit" class="btn btn-primary mr-1">Submit</button>

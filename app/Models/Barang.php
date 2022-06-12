@@ -14,10 +14,10 @@ class Barang extends Model
         'namaBarang',
         'harga',
         'stok',
-        'tglUpdate',
         'supplier_id',
         'kategori_id',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'foto'
     ];
 }
