@@ -8,6 +8,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Models\BarangMasuk;
 use App\Models\Barangmasuk as ModelsBarangmasuk;
 
@@ -48,3 +49,6 @@ Route::resource('barang', BarangController::class);
 
 // barang masuk
 Route::resource('barangmasuk', BarangMasukController::class);
+
+// barang keluar
+Route::resource('barangkeluar', BarangKeluarController::class);
