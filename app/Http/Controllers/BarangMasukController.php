@@ -39,16 +39,6 @@ class BarangMasukController extends Controller
         return view('pages.barangmasuk.tambah', compact('users', 'supplier', 'barang'));
     }
 
-    public function edit($id)
-    {
-        $users = Users::all();
-        $supplier = Supplier::all();
-        $barang = Barang::all();
-
-        $data['barangmasuk'] = Barangmasuk::find($id);
-        return view('pages.barangmasuk.edit', compact('users', 'supplier', 'barang'), $data);
-    }
-
     public function store(Request $request)
     {
         $data =
@@ -70,31 +60,5 @@ class BarangMasukController extends Controller
             ]);
 
         return redirect()->route('barangmasuk.index')->with('berhasil', 'Data Barang Masuk Baru Berhasil Ditambahkan!');
-    }
-
-    public function update(Request $request, $id)
-    {
-        $barangmasuk = Barangmasuk::findOrFail($id);
-
-        $data =
-            [
-                'barang_id' => $request->barang_id,
-                'supplier_id' => $request->supplier_id,
-                'tglMasuk' => $request->tglMasuk,
-                'jmlBarang' => $request->jmlBarang,
-                'user_id' => $request->user_id
-            ];
-
-        $barangmasuk->update($data);
-
-        return redirect()->route('barangmasuk.index')->with('berhasil', 'Data Barang Masuk Berhasil Diubah!');
-    }
-
-    public function destroy($id)
-    {
-        $barangmasuk = Barangmasuk::find($id);
-        $barangmasuk->delete();
-
-        return redirect()->route('barangmasuk.index')->with('berhasil', 'Data Barang Masuk Berhasil Terhapus!');
     }
 }

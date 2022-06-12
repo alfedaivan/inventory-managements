@@ -29,7 +29,6 @@
                             <th>Tanggal Masuk</th>
                             <th>Jumlah Barang</th>
                             <th>Nama User</th>
-                            <th>Action</th>
                         </tr>
 
                         @foreach ($barangmasuk as $key => $brgMasukindex)
@@ -57,14 +56,6 @@
                                 {{ $us->nama }}
                                 @endif
                                 @endforeach
-                            </td>
-                            <td class="d-flex">
-                                <a href="{{ route('barangmasuk.edit', $brgMasukindex->id) }}" class="btn btn-primary mr-1">Edit</a>
-                                <form action="{{ route('barangmasuk.destroy', $brgMasukindex->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" onclick="return confirm('Yakin untuk menghapus data ini?')" class="btn btn-danger">Delete</button>
-                                </form>
                             </td>
                         </tr>
                         @endforeach
