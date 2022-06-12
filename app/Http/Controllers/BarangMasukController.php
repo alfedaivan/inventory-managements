@@ -15,20 +15,21 @@ class BarangMasukController extends Controller
         $users = Users::all();
         $supplier = Supplier::all();
         $barang = Barang::all();
-        $barangmasuk = Barangmasuk::when($request->search, function ($query) use ($request) {
-            $query->join('users', 'barangMasuk.user_id', '=', 'users.id')
-                ->join('supplier', 'barangMasuk.supplier_id', '=', 'supplier.id')
-                ->join('barang', 'barangMasuk.barang_id', '=', 'barang.id')
+        $barang_masuk = Barangmasuk::when($request->search, function ($query) use ($request) {
+            $query->join('users', 'barang_masuk.user_id', '=', 'users.id')
+                ->join('supplier', 'barang_masuk.supplier_id', '=', 'supplier.id')
+                ->join('barang', 'barang_masuk.barang_id', '=', 'barang.id')
                 ->where('barang.namaBarang', 'LIKE', '%' . $request->search . '%')
+                ->orwhere('barang_masuk.tglMasuk', 'LIKE', '%' . $request->search . '%')
                 ->select(
-                    'barangMasuk.*',
+                    'barang_masuk.*',
                     'users.nama AS users_nama',
                     'supplier.nama AS supplier_nama',
                     'barang.namaBarang AS barang_namaBarang'
                 );
         })->simplePaginate(5);
 
-        return view('pages.barangmasuk.index', compact('users', 'supplier', 'barang', 'barangmasuk'));
+        return view('pages.barangmasuk.index', compact('users', 'supplier', 'barang', 'barang_masuk'));
     }
 
     public function create()

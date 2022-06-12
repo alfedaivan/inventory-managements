@@ -16,6 +16,14 @@
         @endif
 
         <div class="card">
+            <form method="GET" class="form-inline">
+                <div class="form-group">
+                    <input type="text" name="search" class="form-control" title="Cari berdasarkan nama ruangan / nama barang" placeholder="Search" value="{{ request()->get('search') }}">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
             <div class="card-header">
                 <a href="{{ route('barangmasuk.create') }}" class="btn btn-primary">Tambah Barang Masuk</a>
             </div>
@@ -31,9 +39,9 @@
                             <th>Nama User</th>
                         </tr>
 
-                        @foreach ($barangmasuk as $key => $brgMasukindex)
+                        @foreach ($barang_masuk as $key => $brgMasukindex)
                         <tr>
-                            <td>{{ $barangmasuk->firstItem() + $key }}</td>
+                            <td>{{ $barang_masuk->firstItem() + $key }}</td>
                             <td>
                                 @foreach($barang as $brg)
                                 @if($brgMasukindex->barang_id == $brg->id)
@@ -64,7 +72,7 @@
             </div>
         </div>
 
-        {{ $barangmasuk->links() }}
+        {{ $barang_masuk->links() }}
     </section>
 </div>
 @endsection()
