@@ -19,8 +19,16 @@
         @endif
 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header justify-content-between">
                 <a href="{{ route('barangkeluar.create') }}" class="btn btn-primary">Tambah Barang Keluar</a>
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">

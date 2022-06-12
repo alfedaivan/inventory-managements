@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['supplier'] = Supplier::simplePaginate(5);
-        return view('pages.supplier.index', $data);
+        if( $request )
+        {
+            $data['supplier'] = Supplier::where('nama', 'like', '%'.$request->search.'%')->simplePaginate(5);
+        }
+        else
+        {
+            $data['supplier'] = Supplier::simplePaginate(5);
+        }
+        return view('pages.supplier.index', $data, compact('request'));
     }
 
     public function create()
