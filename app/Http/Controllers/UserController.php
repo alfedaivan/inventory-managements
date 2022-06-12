@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Users;
@@ -7,8 +8,17 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index(){
-        $data['users'] = Users::simplePaginate(5);
+    public function index(Request $request)
+    {
+        $data['users'] = Users::when($request->search, function ($query) use ($request) {
+            $query->where('users.nama', 'LIKE', '%' . $request->search . '%')
+                ->orwhere('users.noTelepon', 'LIKE', '%' . $request->search . '%')
+                ->orwhere('users.alamat', 'LIKE', '%' . $request->search . '%')
+                ->orwhere('users.email', 'LIKE', '%' . $request->search . '%')
+                ->select(
+                    'users.*',
+                );
+        })->simplePaginate(5);
         return view('pages.user.index', $data);
     }
 
@@ -21,14 +31,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data =
-        [
-            'nama' => $request->nama,
-            'noTelepon' => $request->noTelepon,
-            'alamat' => $request->alamat,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
+            [
+                'nama' => $request->nama,
+                'noTelepon' => $request->noTelepon,
+                'alamat' => $request->alamat,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
 
-        ];
+            ];
         Users::create($data);
         return redirect()->route('user.index')->with('berhasil', 'Data User Baru Berhasil Ditambahkan!');
     }
@@ -45,12 +55,12 @@ class UserController extends Controller
         $user = Users::findOrFail($id);
 
         $data =
-        [
-            'nama' => $request->nama,
-            'noTelepon' => $request->noTelepon,
-            'alamat' => $request->alamat,
-            'email' => $request->email
-        ];
+            [
+                'nama' => $request->nama,
+                'noTelepon' => $request->noTelepon,
+                'alamat' => $request->alamat,
+                'email' => $request->email
+            ];
 
         $user->update($data);
 
