@@ -62,13 +62,11 @@ class BarangMasukController extends Controller
 
         Barangmasuk::create($data);
 
-        // Barang::all();
-        // $stok = $request->stok;
-        // $jmlBarang = $request->jmlBarang;
-        // $hasil = $stok + $jmlBarang;
+        $stok = Barang::where('id', $request->barang_id)->pluck('stok');
+        $stokBaru = $stok[0] + $request->jmlBarang;
         Barang::find($request->barang_id)
             ->update([
-                'stok' => $request->jmlBarang
+                'stok' => $stokBaru
             ]);
 
         return redirect()->route('barangmasuk.index')->with('berhasil', 'Data Barang Masuk Baru Berhasil Ditambahkan!');
