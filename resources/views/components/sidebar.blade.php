@@ -11,7 +11,7 @@
                 <a href="{{url('/dashboard')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard </span></a>
             </li>
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box"></i> <span>Barang</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cube"></i> <span>Barang</span></a>
                 <ul class="dropdown-menu">
                     <!--  -->
                     <li class="{{request()->is('barang') ? 'active' : 'none'}}">
