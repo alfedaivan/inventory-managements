@@ -18,7 +18,7 @@
                         <a class="nav-link" href="{{url('/barang')}}">List Barang</a>
                     </li>
                     <li><a class="nav-link" href="{{url('/barangmasuk')}}">Barang Masuk</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Barang Keluar</a></li>
+                    <li><a class="nav-link" href="{{url('/barangkeluar')}}">Barang Keluar</a></li>
                 </ul>
             </li>
             <li class="{{request()->is('kategori') ? 'nav-item active' : 'nav-item'}}">

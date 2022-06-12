@@ -6,18 +6,21 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>List Barang Masuk</h1>
+            <h1>Rekaman Data Barang Keluar</h1>
         </div>
 
         @if(session()->has('berhasil'))
-        <div class="alert alert-success">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session()->get('berhasil') }}
-        </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         @endif
 
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('barangmasuk.create') }}" class="btn btn-primary">Tambah Barang Masuk</a>
+                <a href="{{ route('barangkeluar.create') }}" class="btn btn-primary">Tambah Barang Keluar</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -25,34 +28,26 @@
                         <tr>
                             <th>#</th>
                             <th>Nama Barang</th>
-                            <th>Supplier</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Tanggal Keluar</th>
                             <th>Jumlah Barang</th>
                             <th>Nama User</th>
                         </tr>
 
-                        @foreach ($barangmasuk as $key => $brgMasukindex)
+                        @foreach ($barangkeluar as $key => $brgKeluarindex)
                         <tr>
-                            <td>{{ $barangmasuk->firstItem() + $key }}</td>
+                            <td>{{ $barangkeluar->firstItem() + $key }}</td>
                             <td>
                                 @foreach($barang as $brg)
-                                @if($brgMasukindex->barang_id == $brg->id)
+                                @if($brgKeluarindex->barang_id == $brg->id)
                                 {{ $brg->namaBarang }}
                                 @endif
                                 @endforeach
                             </td>
-                            <td>
-                                @foreach($supplier as $sp)
-                                @if($brgMasukindex->supplier_id == $sp->id)
-                                {{ $sp->nama }}
-                                @endif
-                                @endforeach
-                            </td>
-                            <td>{{ $brgMasukindex->tglMasuk }}</td>
-                            <td>{{ $brgMasukindex->jmlBarang }}</td>
+                            <td>{{ $brgKeluarindex->tglKeluar }}</td>
+                            <td>{{ $brgKeluarindex->jmlBarang }}</td>
                             <td>
                                 @foreach($users as $us)
-                                @if($brgMasukindex->user_id == $us->id)
+                                @if($brgKeluarindex->user_id == $us->id)
                                 {{ $us->nama }}
                                 @endif
                                 @endforeach
@@ -64,7 +59,7 @@
             </div>
         </div>
 
-        {{ $barangmasuk->links() }}
+        {{ $barangkeluar->links() }}
     </section>
 </div>
 @endsection()
