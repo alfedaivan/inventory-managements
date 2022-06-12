@@ -28,28 +28,24 @@ class BarangController extends Controller
     {
         $kategori = Kategori::all();
         $supplier = Supplier::all();
-        return view('pages.barang.tambah');
+        return view('pages.barang.tambah', compact('kategori', 'supplier'));
     }
-
 
     public function store(Request $request)
     {
-
+        $kategori = Kategori::all();
+        $supplier = Supplier::all();
         $this->validate($request, [
             'namaBarang' => 'required',
             'harga' => 'required',
             'stok' => 'required',
             'kategori_id' => 'required',
             'supplier_id' => 'required',
-            'foto' => 'required|image|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        $file = $request->file('foto');
-
-        $nama_file = time()."_".$file->getClientOriginalName();
-
-        $tujuan_upload = 'images';
-        $file->move($tujuan_upload,$nama_file);
+        $imageName = time().'.'.$request->foto->extension();
+        $request->foto->move(public_path('images'), $imageName);
 
         Barang::create([
             'namaBarang' => $request->namaBarang,
@@ -57,11 +53,74 @@ class BarangController extends Controller
             'stok' => $request->stok,
             'kategori_id' => $request->kategori_id,
             'supplier_id' => $request->supplier_id,
-            'foto' => $nama_file
+            'foto' => $imageName
         ]);
 
-        return redirect()->route('kategori.index')->with('berhasil', 'Data Kategori Baru Berhasil Ditambahkan!');
+        return redirect()->route('barang.index')->with('berhasil', 'Data Barang Baru Berhasil Ditambahkan!');
     }
+
+    public function edit($id)
+    {
+        $kategori = Kategori::all();
+        $supplier = Supplier::all();
+        $data['barang'] = Barang::find($id);
+        return view('pages.barang.edit', $data, compact('kategori', 'supplier'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $barang = Barang::findOrFail($id);
+        $kategori = Kategori::all();
+        $supplier = Supplier::all();
+
+        $imageName = $request->hidden_image;
+        $file = $request->file('foto');
+
+        if ($file !='') {
+            $this->validate($request, [
+                'namaBarang' => 'required',
+                'harga' => 'required',
+                'stok' => 'required',
+                'kategori_id' => 'required',
+                'supplier_id' => 'required',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+            $imageName = time()."_".$file->getClientOriginalName();
+            $tujuan_upload = 'images';
+            $file->move($tujuan_upload,$imageName);
+        }else{
+            $request->validate([
+                'namaBarang' => 'required',
+                'harga' => 'required',
+                'stok' => 'required',
+                'kategori_id' => 'required',
+                'supplier_id' => 'required',
+            ]);
+        }
+
+        $form_data = array(
+            'namaBarang' => $request->namaBarang,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+            'kategori_id' => $request->kategori_id,
+            'supplier_id' => $request->supplier_id,
+            'foto' => $imageName
+        );
+        Barang::where('id',$id)->update($form_data);
+
+        return redirect()->route('barang.index')->with('berhasil', 'Data Barang Masuk Berhasil Diubah!');
+    }
+
+    // delete
+    public function destroy($id)
+    {
+        $supplier = Barang::find($id);
+        $supplier->delete();
+
+        return redirect()->route('barang.index')->with('berhasil', 'Data Barang Berhasil Terhapus!');
+    }
+
+
 
 
 }

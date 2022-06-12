@@ -18,7 +18,6 @@ class CreateBarang extends Migration
             $table->string('namaBarang');
             $table->integer('harga');
             $table->integer('stok');
-            $table->date('tglUpdate');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->bigInteger('kategori_id')->unsigned()->nullable();
             $table->string('foto');
