@@ -16,8 +16,18 @@
         @endif
 
         <div class="card">
-            <div class="card-header">
+            <div class="card-header justify-content-between">
                 <a href="{{ route('kategori.create') }}" class="btn btn-primary">Tambah Kategori</a>
+                <div class="card-header-form">
+                    <form method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" value="{{ $request->search }}" placeholder="Search" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary rounded-left-0" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">

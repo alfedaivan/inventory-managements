@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['kategori'] = Kategori::simplePaginate(5);
-        return view('pages.kategori.index', $data);
+        if ($request) {
+            $data['kategori'] = Kategori::where('kategori', 'like', '%' . $request->search . '%')->simplePaginate(5);
+        } else {
+            $data['kategori'] = Kategori::simplePaginate(5);
+        }
+
+        return view('pages.kategori.index', $data, compact('request'));
     }
 
     public function create()
