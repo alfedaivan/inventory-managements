@@ -7,44 +7,45 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 
 // controlles
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\DashboardController;
+
 
 class LoginController extends Controller
 {
 
 
-    public function login(){
-        if(Auth::check()){
+    public function login()
+    {
+        if (Auth::check()) {
             return redirect('dashboard');
-        }else{
+        } else {
             return view('index');
         }
     }
 
-    public function actionLogin(Request $request){
+    public function actionLogin(Request $request)
+    {
 
         Auth::attempt($request->only('email', 'password'));
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $request->session()->put('name', Auth::user()->name);
             $request->session()->put('email', Auth::user()->email);
 
             return redirect()->route('dashboard');
-        }else{
+        } else {
             return redirect()
-            ->back()
-            ->withErrors("Email Atau Password salah!");
+                ->back()
+                ->withErrors("Email Atau Password salah!");
         }
 
         var_dump(Auth::check());
-            // Return command;
+        // Return command;
 
     }
 
-    public function actionLogout(){
+    public function actionLogout()
+    {
         Auth::logout();
         return redirect('/');
     }
-
 }
