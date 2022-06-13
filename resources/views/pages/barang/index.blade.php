@@ -10,8 +10,11 @@
         </div>
 
         @if(session()->has('berhasil'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session()->get('berhasil') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         @endif
 
@@ -40,6 +43,7 @@
                         <tr>
                             <th>#</th>
                             <th>Foto</th>
+                            <th>Kode Barang</th>
                             <th>Nama Barang</th>
                             <th>Kategori</th>
                             <th>Harga</th>
@@ -54,6 +58,7 @@
                         <tr>
                             <td>{{ $barang->firstItem() + $key }}</td>
                             <td><img src="{{ url('/images/'.$barangindex->foto) }}" height="75" width="75" alt="" /></td>
+                            <td>{{ $barangindex->id }}</td>
                             <td>{{ $barangindex->namaBarang }}</td>
                             <td>
                                 @foreach($kategori as $k)
