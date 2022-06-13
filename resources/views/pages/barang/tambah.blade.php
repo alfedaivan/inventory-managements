@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Foto</label>
-                                <input name="foto" type="file" class="form-control" required="">
+                                <input name="foto" type="file" class="form-control p-2" required="">
                             </div>
                             <div class="form-group d-flex justify-conternt-between">
                                 <button type="submit" class="btn btn-primary mr-1">Submit</button>

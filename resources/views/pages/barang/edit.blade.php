@@ -6,7 +6,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Tambah Barang</h1>
+            <h1>Edit Barang</h1>
         </div>
 
         <div class="row">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Foto</label>
-                                <input name="foto" type="file" class="form-control" value="{{ url('/images'.$barang->foto) }}" data-default-file="{{ url('/images'.$barang->foto) }}">
+                                <input name="foto" type="file" class="form-control p-2" value="{{ url('/images'.$barang->foto) }}" data-default-file="{{ url('/images'.$barang->foto) }}">
                                 <input name="hidden_image" type="hidden" class="form-control" value="{{$barang->foto}}">
                             </div>
                             <div class="form-group d-flex justify-conternt-between">

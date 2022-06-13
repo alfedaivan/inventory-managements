@@ -14,31 +14,32 @@
                     <div class="card-body">
                         <form action="{{ route('barangmasuk.store') }}" method="post">
                             @csrf
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-3">
                                 <label>Nama Barang</label>
                                 <select name="barang_id" class="form-control" required="">
                                     @foreach($barang as $brg)
-                                    <option value="{{$brg->id}}">{{$brg->namaBarang}}</option>
+                                    <option value="{{$brg->id}}">{{$brg->namaBarang}} | Kode Barang : {{$brg->id}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-3">
                                 <label>Supplier</label>
                                 <select name="supplier_id" class="form-control" required="">
                                     @foreach($supplier as $sp)
                                     <option value="{{$sp->id}}">{{$sp->nama}}</option>
                                     @endforeach
                                 </select>
+                                <small class="text-danger">PASTIKAN SUPPLIER SAMA DENGAN SUPPLIER DI LIST BARANG MENGGUNAKAN KODE BARANG</small>
                             </div>
-                            <div class="form-group mb-4">
+                            <div class="form-group mb-3">
                                 <label>Tanggal Masuk</label>
                                 <input type="date" name="tglMasuk" class="form-control" value="{{ old('tglMasuk') }}" required>
                             </div>
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-3">
                                 <label>Jumlah Barang</label>
                                 <input type="number" name="jmlBarang" class="form-control" value="{{ old('jmlBarang') }}" required>
                             </div>
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-4">
                                 <label>User</label>
                                 <select name="user_id" class="form-control" required="">
                                     @foreach($users as $us)
