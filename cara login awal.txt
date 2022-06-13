@@ -1,0 +1,4 @@
+--lakukan "php artisan db:seed"
+--masukan user login dengan menggunakan akun berikut :
+  email : "admin@gmail.com"
+  password : "admin"
